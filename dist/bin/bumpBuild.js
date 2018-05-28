@@ -52,7 +52,7 @@ function getBuildNumber() {
         + ("0" + now.getMinutes()).slice(-2);
 }
 function guessType(targetFilePath) {
-    if (targetFilePath.match(/(!?web|app).config.xml$/)) {
+    if (targetFilePath.match(/(!?web|app).config$/)) {
         return appSettings;
     }
     if (targetFilePath.match(/.xml$/)) {
