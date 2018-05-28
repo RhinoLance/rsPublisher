@@ -28,6 +28,7 @@
     "commander": "^2.15.1",
     "jsonfile": "^4.0.0",
     "simple-git": "^1.95.0",
-    "xmlpoke": "^0.1.16"
+    "xmlpoke": "^0.1.16",
+    "chalk": "^2.4.1"
   }
 }
