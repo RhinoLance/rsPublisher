@@ -1,7 +1,7 @@
 {
   "name": "rs-publisher",
   "version": "1.0.0",
-  "build": "201805281456",
+  "build": "201805281457",
   "description": "Software publishing CLI",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
