@@ -1,1 +1,33 @@
-{"name":"rs-publisher","version":"1.0.0","build":"201805281434","description":"Software publishing CLI","main":"./dist/index.js","types":"./dist/index.d.ts","bin":{"bumpBuild":"./dist/bin/bumpBuild.js"},"scripts":{"test":"echo \"Error: no test specified\" && exit 1","build":"tsc","watch":"tsc --watch"},"repository":{"type":"git","url":"https://github.com/RhinoLance/rsPublisher.git"},"author":"@RhinoLance","license":"MIT","devDependencies":{"@types/node":"^10.1.3","typescript":"^2.8.3"},"dependencies":{"@types/jsonfile":"^4.0.1","commander":"^2.15.1","jsonfile":"^4.0.0","simple-git":"^1.95.0","xmlpoke":"^0.1.16"}}
+{
+  "name": "rs-publisher",
+  "version": "1.0.0",
+  "build": "201805281435",
+  "description": "Software publishing CLI",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "bumpBuild": "./dist/bin/bumpBuild.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RhinoLance/rsPublisher.git"
+  },
+  "author": "@RhinoLance",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^10.1.3",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "@types/jsonfile": "^4.0.1",
+    "commander": "^2.15.1",
+    "jsonfile": "^4.0.0",
+    "simple-git": "^1.95.0",
+    "xmlpoke": "^0.1.16"
+  }
+}
