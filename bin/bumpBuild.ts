@@ -78,7 +78,7 @@ function getBuildNumber() : string {
 
 function guessType( targetFilePath: string ): Processor {
 
-	if( targetFilePath.match( /(!?web|app).config$/ )){
+	if( targetFilePath.match( /(!?[wW]eb|[aA]pp).config$/ )){
 		return appSettings;
 	}
 
