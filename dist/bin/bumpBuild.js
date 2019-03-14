@@ -20,7 +20,10 @@ function main(target) {
             processor = appSettings;
             break;
         case "npmPackage":
-            processor = appSettings;
+            processor = npmPackage;
+            break;
+        case "cordova":
+            processor = cordova;
             break;
         default:
             console.log("No file type set, attempting to identify automatically ...");
@@ -63,19 +66,30 @@ function guessType(targetFilePath) {
     }
     throw ("The file type could not be inferred by the target file name.");
 }
-function appSettings(build, targetFile) {
-    console.log("Processing as appSettings for " + targetFile);
+function bumpXml(build, xPath, targetFile) {
     let fileFound = false;
     xmlpoke(targetFile, xml => {
         fileFound = true;
-        xml.withBasePath('configuration')
-            .set("appSettings/add[@key='Build']/@value", build);
+        xPath.forEach(element => {
+            xml.setOrAdd(element, build);
+        });
     });
     if (!fileFound) {
         Promise.reject(false);
         throw ("The specified target file not be found at " + targetFile);
     }
     return Promise.resolve(true);
+}
+function appSettings(build, targetFile) {
+    console.log("Processing as appSettings for " + targetFile);
+    return bumpXml(build, ["configuration/appSettings/add[@key='Build']/@value"], targetFile);
+}
+function cordova(build, targetFile) {
+    const xPathList = [
+        "widget[@key='android-versionCode']/@value",
+        "widget[@key='ios-CFBundleVersion']/@value"
+    ];
+    return bumpXml(build, xPathList, targetFile);
 }
 function npmPackage(build, targetFile) {
     console.log("Processing as npmPackage for " + targetFile);
