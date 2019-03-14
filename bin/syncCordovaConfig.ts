@@ -10,7 +10,7 @@ let sourceFile: string = "";
 
 type Processor = (build:string, targetFile: string) => Promise<boolean>;
 
-var program = new Command("syncCordova <source> <target>")
+var program = new Command("syncCordovaConfig <source> <target>")
 		.version( "1.0.0" )
 		.arguments('<package.json> <config.xml>')
 		.action( (source, target) => {
