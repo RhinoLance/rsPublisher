@@ -7,7 +7,7 @@ const xmlpoke = require("xmlpoke");
 const fs = require("fs");
 let targetFile = "";
 let sourceFile = "";
-var program = new commander_1.Command("bumpBuild <source> <target>")
+var program = new commander_1.Command("syncCordova <source> <target>")
     .version("1.0.0")
     .arguments('<package.json> <config.xml>')
     .action((source, target) => {
