@@ -23,18 +23,24 @@ function main(sourceFile, targetFile) {
 function setXml(build, version, targetFile) {
     let fileFound = false;
     const xPath = [
-        "widget[@key='android-versionCode']/@value",
-        "widget[@key='ios-CFBundleVersion']/@value"
+        "w:widget/@android-versionCode",
+        "w:widget/@ios-CFBundleVersion"
     ];
     xmlpoke(targetFile, xml => {
         fileFound = true;
+        xml.errorOnNoMatches();
+        xml.addNamespace('w', 'http://www.w3.org/ns/widgets');
         xPath.forEach(element => {
-            xml.setOrAdd(element, build);
+            console.log("adding " + build + " to " + element);
+            xml.ensure(element);
+            xml.set(element, build);
         });
-        xml.setOrAdd("widget[@key='version']/@value", version);
+        console.log("adding " + version + " to " + "w:widget/@version");
+        xml.setOrAdd("w:widget/@version", version);
     });
     if (!fileFound) {
         Promise.reject(false);
+        console.log("The specified target file not be found at " + targetFile);
         throw ("The specified target file not be found at " + targetFile);
     }
     return Promise.resolve(true);
