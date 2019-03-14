@@ -22,12 +22,12 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^10.1.3",
-    "typescript": "^2.8.3",
-    "xmlpoke": "^0.1.16"
+    "typescript": "^2.8.3"
   },
   "dependencies": {
     "@types/jsonfile": "^4.0.1",
     "@types/xmlpoke": "^0.1.4",
+    "xmlpoke": "^0.1.16",
     "chalk": "^2.4.1",
     "commander": "^2.15.1",
     "jsonfile": "^4.0.0",
