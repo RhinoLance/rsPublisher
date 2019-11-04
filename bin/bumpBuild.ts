@@ -44,8 +44,15 @@ function main(target: string ) {
 	const build = getBuildNumber();
 
 	processor(build, targetFile )
-	.then( () => console.log( "Bump complete, starting tagging."))
-	.then( () => { return program.tag ? tagAndPush(build, targetFile ) : Promise.resolve(true) })
+	.then( () => { 
+		if( program.tag ){
+			console.log( "Bump complete, starting tagging.");
+			return tagAndPush(build, targetFile );
+		}
+		else{
+			return Promise.resolve(true);
+		}
+	})
 	.then( () => console.log( "Build syuccesfully updated to " + build) );
 	
 	
