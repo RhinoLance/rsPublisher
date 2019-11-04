@@ -16,6 +16,7 @@ var program = new Command("bumpBuild <targetFile>")
 		.arguments('<targetFile>')
 		.action( target => targetFile = target )
 		.option( "-t --type [type]", "Specify the type of file to update [appSettings, npmPackage].  If not specified it will attempt to guess based on the file type.")
+		.option( "-nt --no-tag", "Do not 'git tag' this version")
 		.parse(process.argv);
 
 function main(target: string ) {
@@ -44,7 +45,7 @@ function main(target: string ) {
 
 	processor(build, targetFile )
 	.then( () => console.log( "Bump complete, starting tagging."))
-	.then( () => tagAndPush(build, targetFile ) )
+	.then( () => { return !program.tag ? tagAndPush(build, targetFile ) : Promise.resolve(true) })
 	.then( () => console.log( "Build syuccesfully updated to " + build) );
 	
 	
