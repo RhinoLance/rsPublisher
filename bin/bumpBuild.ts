@@ -45,7 +45,7 @@ function main(target: string ) {
 
 	processor(build, targetFile )
 	.then( () => console.log( "Bump complete, starting tagging."))
-	.then( () => { return !program.tag ? tagAndPush(build, targetFile ) : Promise.resolve(true) })
+	.then( () => { return program.tag ? tagAndPush(build, targetFile ) : Promise.resolve(true) })
 	.then( () => console.log( "Build syuccesfully updated to " + build) );
 	
 	
