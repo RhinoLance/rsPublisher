@@ -12,6 +12,7 @@ var program = new commander_1.Command("bumpBuild <targetFile>")
     .arguments('<targetFile>')
     .action(target => targetFile = target)
     .option("-t --type [type]", "Specify the type of file to update [appSettings, npmPackage].  If not specified it will attempt to guess based on the file type.")
+    .option("-nt --no-tag", "Do not 'git tag' this version")
     .parse(process.argv);
 function main(target) {
     let processor;
@@ -31,8 +32,15 @@ function main(target) {
     }
     const build = getBuildNumber();
     processor(build, targetFile)
-        .then(() => console.log("Bump complete, starting tagging."))
-        .then(() => tagAndPush(build, targetFile))
+        .then(() => {
+        if (program.tag) {
+            console.log("Bump complete, starting tagging.");
+            return tagAndPush(build, targetFile);
+        }
+        else {
+            return Promise.resolve(true);
+        }
+    })
         .then(() => console.log("Build syuccesfully updated to " + build));
 }
 function tagAndPush(build, targetFile) {
@@ -57,6 +65,9 @@ function getBuildNumber() {
 function guessType(targetFilePath) {
     if (targetFilePath.match(/(!?[wW]eb|[aA]pp).config$/)) {
         return appSettings;
+    }
+    if (targetFilePath.match(/config.xml$/)) {
+        return cordova;
     }
     if (targetFilePath.match(/.xml$/)) {
         return appSettings;
@@ -85,6 +96,7 @@ function appSettings(build, targetFile) {
     return bumpXml(build, ["configuration/appSettings/add[@key='Build']/@value"], targetFile);
 }
 function cordova(build, targetFile) {
+    console.log("Processing as Cordova for " + targetFile);
     const xPathList = [
         "widget[@key='android-versionCode']/@value",
         "widget[@key='ios-CFBundleVersion']/@value"
