@@ -122,7 +122,7 @@ function bumpXml( build: string, xPath: string[], targetFile: string, namespace?
 
 		xPath.forEach(element => {
 			
-			element = namespace ? `x:${namespace}` : element;
+			element = namespace ? `x:${element}` : element;
 
 			xml.setOrAdd(element, 
                 build);

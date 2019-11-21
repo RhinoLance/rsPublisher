@@ -85,7 +85,7 @@ function bumpXml(build, xPath, targetFile, namespace) {
             xml.addNamespace("x", namespace);
         }
         xPath.forEach(element => {
-            element = namespace ? `x:${namespace}` : element;
+            element = namespace ? `x:${element}` : element;
             xml.setOrAdd(element, build);
         });
     });
