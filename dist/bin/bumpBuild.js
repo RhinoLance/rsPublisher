@@ -77,11 +77,15 @@ function guessType(targetFilePath) {
     }
     throw ("The file type could not be inferred by the target file name.");
 }
-function bumpXml(build, xPath, targetFile) {
+function bumpXml(build, xPath, targetFile, namespace) {
     let fileFound = false;
     xmlpoke(targetFile, xml => {
         fileFound = true;
+        if (namespace) {
+            xml.addNamespace("x", namespace);
+        }
         xPath.forEach(element => {
+            element = namespace ? `x:${namespace}` : element;
             xml.setOrAdd(element, build);
         });
     });
@@ -101,7 +105,7 @@ function cordova(build, targetFile) {
         "widget[@key='android-versionCode']/@value",
         "widget[@key='ios-CFBundleVersion']/@value"
     ];
-    return bumpXml(build, xPathList, targetFile);
+    return bumpXml(build, xPathList, targetFile, "http://www.w3.org/ns/widgets");
 }
 function npmPackage(build, targetFile) {
     console.log("Processing as npmPackage for " + targetFile);

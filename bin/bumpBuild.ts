@@ -109,14 +109,21 @@ function guessType( targetFilePath: string ): Processor {
 	throw( "The file type could not be inferred by the target file name.");
 }
 
-function bumpXml( build: string, xPath: string[], targetFile: string ): Promise<boolean>{
+function bumpXml( build: string, xPath: string[], targetFile: string, namespace?: string ): Promise<boolean>{
 
 	let fileFound: boolean = false;
 
 	xmlpoke(targetFile, xml => {
 		fileFound = true;
 		
+		if( namespace ){
+			xml.addNamespace("x", namespace);
+		}
+
 		xPath.forEach(element => {
+			
+			element = namespace ? `x:${namespace}` : element;
+
 			xml.setOrAdd(element, 
                 build);
 		});
@@ -146,7 +153,7 @@ function cordova( build: string, targetFile: string) : Promise<boolean>{
 		"widget[@key='android-versionCode']/@value",
 		"widget[@key='ios-CFBundleVersion']/@value"
 	];
-	return bumpXml( build, xPathList, targetFile);
+	return bumpXml( build, xPathList, targetFile, "http://www.w3.org/ns/widgets");
 
 }
 
