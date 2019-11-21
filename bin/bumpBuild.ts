@@ -94,6 +94,10 @@ function guessType( targetFilePath: string ): Processor {
 		return appSettings;
 	}
 
+	if( targetFilePath.match( /config.xml$/ )){
+		return cordova;
+	}
+
 	if( targetFilePath.match( /.xml$/ )){
 		return appSettings;
 	}
