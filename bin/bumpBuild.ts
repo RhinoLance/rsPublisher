@@ -140,6 +140,7 @@ function appSettings( build: string, targetFile: string ): Promise<boolean>{
 }
 
 function cordova( build: string, targetFile: string) : Promise<boolean>{
+	console.log( "Processing as Cordova for " + targetFile);
 
 	const xPathList = [
 		"widget[@key='android-versionCode']/@value",
