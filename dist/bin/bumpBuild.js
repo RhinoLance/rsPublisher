@@ -102,8 +102,8 @@ function appSettings(build, targetFile) {
 function cordova(build, targetFile) {
     console.log("Processing as Cordova for " + targetFile);
     const xPathList = [
-        "widget[@key='android-versionCode']/@value",
-        "widget[@key='ios-CFBundleVersion']/@value"
+        "widget/@android-versionCode",
+        "widget/@ios-CFBundleVersion"
     ];
     return bumpXml(build, xPathList, targetFile, "http://www.w3.org/ns/widgets");
 }

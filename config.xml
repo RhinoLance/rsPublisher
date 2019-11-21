@@ -1,4 +1,4 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="201906201133" id="com.rhinosw.rhinospect.app" ios-CFBundleVersion="201906201133" version="4.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="201911211603" id="com.rhinosw.rhinospect.app" ios-CFBundleVersion="201911211603" version="4.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>This is a test file.</name>
 </widget>

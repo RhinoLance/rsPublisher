@@ -150,9 +150,10 @@ function cordova( build: string, targetFile: string) : Promise<boolean>{
 	console.log( "Processing as Cordova for " + targetFile);
 
 	const xPathList = [
-		"widget[@key='android-versionCode']/@value",
-		"widget[@key='ios-CFBundleVersion']/@value"
+		"widget/@android-versionCode",
+		"widget/@ios-CFBundleVersion"
 	];
+	
 	return bumpXml( build, xPathList, targetFile, "http://www.w3.org/ns/widgets");
 
 }
