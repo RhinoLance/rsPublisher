@@ -30,7 +30,7 @@
     "chalk": "^2.4.1",
     "commander": "^2.20.3",
     "jsonfile": "^4.0.0",
-    "simple-git": "^1.126.0",
+    "simple-git": "^3.5.0",
     "xmlpoke": "^0.1.16"
   }
 }
